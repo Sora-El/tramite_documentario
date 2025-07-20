@@ -12,5 +12,15 @@ class Tramite extends Model
         'solicitante',
         'fecha_inicio',
         'estado',
+        'descripcion',
+        'observaciones',
+        'resultado',
+        'archivo_adjunto',
+        'user_id',
     ];
+    
+    public function usuario()
+    {
+        return $this->belongsTo(User::class, 'user_id');
+    }
 }

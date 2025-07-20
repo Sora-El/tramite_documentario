@@ -22,7 +22,7 @@ class PanelPrincipal extends Component
     {
         // Consultar la base de datos
         $tramites = Tramite::orderBy('created_at', 'desc')->get();
-
+        
         $this->tramitesRecientes = $tramites;
 
         // Calcular estadísticas

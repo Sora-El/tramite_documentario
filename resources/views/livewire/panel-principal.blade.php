@@ -81,8 +81,9 @@
                                 </flux:badge>
                             </td>
                             <td class="p-2">
-                                <div class="flex items-center gap-2">
-                                    <flux:button variant="ghost" size="sm" icon="eye" />
+                                    <a href="{{ route('ver.tramite', $tramite->id) }}">
+                                        <flux:button variant="ghost" size="sm" icon="eye" />
+                                    </a>
 
                                     @if($tramite->estado === 'Pendiente' || $tramite->estado === 'En Revisión')
                                         <flux:button 
@@ -95,39 +96,31 @@
                                         </flux:button>
 
                                     @elseif($tramite->estado === 'Atendido')
-                                        <flux:button 
-                                            variant="outline" 
-                                            size="sm" 
-                                            icon="check"
-                                            wire:click="aprobar({{ $tramite->id }})" 
-                                            wire:confirm="¿Aprobar este trámite?"
-                                            class="text-green-600 border-green-300 hover:bg-green-50">
-                                        </flux:button>
-                                        
-                                        <flux:button 
-                                            variant="outline" 
-                                            size="sm" 
-                                            icon="share"
-                                            wire:click="derivar({{ $tramite->id }})" 
-                                            wire:confirm="¿Derivar este trámite?"
-                                            class="text-blue-600 border-blue-300 hover:bg-blue-50">
-                                        </flux:button>
-
+                                        <a href="{{ route('atender.tramite', $tramite->id) }}">
+                                            <flux:button 
+                                                variant="outline" 
+                                                size="sm" 
+                                                icon="check"
+                                                class="text-green-600 border-green-300 hover:bg-green-50">
+                                            </flux:button>
+                                        </a>
+                                        <a href="{{ route('derivar.tramite', $tramite->id) }}">
+                                            <flux:button 
+                                                variant="outline" 
+                                                size="sm" 
+                                                icon="share"
+                                                class="text-blue-600 border-blue-300 hover:bg-blue-50">
+                                            </flux:button>
+                                        </a>
                                     @elseif($tramite->estado === 'Aprobado')
-                                        <flux:button 
-                                            variant="outline" 
-                                            size="sm" 
-                                            icon="check-badge"
-                                            wire:click="finalizar({{ $tramite->id }})" 
-                                            wire:confirm="¿Finalizar este trámite?"
-                                            class="text-indigo-600 border-indigo-300 hover:bg-indigo-50">
-                                        </flux:button>
-
-                                    @elseif($tramite->estado === 'Derivado')
-                                        <flux:badge variant="zinc" size="sm">Derivado</flux:badge>
-
-                                    @elseif($tramite->estado === 'Finalizado')
-                                        <flux:badge variant="success" size="sm">Completado</flux:badge>
+                                        <a href="{{ route('finalizar.tramite', $tramite->id) }}">
+                                            <flux:button 
+                                                variant="outline" 
+                                                size="sm" 
+                                                icon="check-badge"
+                                                class="text-indigo-600 border-indigo-300 hover:bg-indigo-50">
+                                            </flux:button>
+                                        </a>
                                     @endif
                                 </div>
                             </td>
